@@ -2,15 +2,18 @@ package com.devsuperior.demo.entities;
 
 import java.util.Objects;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_role")
-public class Role {
+public class Role implements GrantedAuthority{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,16 @@ public class Role {
 		this.id = id;
 	}
 
+	/**
+	 * Retorna a autoridade associada a esta instância.
+	 *
+	 * Este método é parte de uma classe que implementa a interface de segurança
+	 * e é usado para obter a autoridade ou papel associado a uma determinada
+	 * instância dessa classe.
+	 *
+	 * @return Uma String representando a autoridade associada a esta instância.
+	 */	
+	@Override
 	public String getAuthority() {
 		return authority;
 	}
